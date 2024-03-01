@@ -1,0 +1,41 @@
+@import "styles/_colors";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid $black;
+}
+
+.logoWrapper {
+    height: 30px;
+
+    & > img {
+        height: 100%;
+        width: auto;
+    }
+}
+
+.navbarWrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.navbarItem {
+    font-size: 18px;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.3s;
+    padding: 5px 0;
+        
+    &:visited {
+        color: $black;
+        font-size: 34px;
+    }
+
+    &:hover {
+        color: $wildBlueYander;
+    }
+}

@@ -1,0 +1,54 @@
+@import "styles/colors";
+
+.sectionWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.sectionContainer {
+    max-width: 1000px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    & > section:not(section:first-of-type) {
+        margin-top: 60px;
+    }
+}
+
+.heading {
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px;
+}
+
+.highlightedText {
+    font-weight: 600;
+    color: $wildBlueYander !important;
+}
+
+.definitionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.primaryText {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.solvencyComponentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 0 0 40px;
+    margin: 0;
+
+    & > li {
+        padding: 0 !important;
+    }
+}
