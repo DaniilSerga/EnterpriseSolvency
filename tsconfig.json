@@ -28,7 +28,8 @@
       "navigation/*": ["./navigation"],
       "pages/*": ["./pages"],
       "services/*": ["./services"],
-      "styles/*": ["./styles/*"]
+      "styles/*": ["./styles/*"],
+      "hooks/*": ["./hooks"],
     },
   },
   "include": [
