@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchSolvencyHistory, postSolvency } from "services";
+import { fetchSolvencyHistory, postSolvency, deleteSolvency } from "services";
 import { ISolvencyState } from "./type";
 import { Solvency } from "types";
 
@@ -11,6 +11,10 @@ const getSolvencyHistory = createAsyncThunk<Solvency[]>('getSolvencyHistory', as
 const createSolvency = createAsyncThunk('createSolvency', async ({startFunds, endFunds, spentFunds, calculationResult, description}: {startFunds: number, endFunds: number, spentFunds: number, calculationResult: number, description: string}) => {
     await postSolvency(startFunds, endFunds, spentFunds, calculationResult, description);
 });
+
+const removeSolvency = createAsyncThunk('removeSolvency', async (id: number) => {
+    await deleteSolvency(id);
+})
 
 const initialState: ISolvencyState = {
     SolvencyHistory: [],
@@ -30,6 +34,7 @@ const solvencySlice = createSlice({
 export const SolvencyEffects = {
     getSolvencyHistory,
     createSolvency,
+    removeSolvency,
 }
 
 const {reducer, actions} = solvencySlice;

@@ -1,3 +1,3 @@
-import {fetchSolvencyHistory, postSolvency} from "./SolvencyServices";
+import {fetchSolvencyHistory, postSolvency, deleteSolvency} from "./SolvencyServices";
 
-export {fetchSolvencyHistory, postSolvency};
+export {fetchSolvencyHistory, postSolvency, deleteSolvency};

@@ -1,5 +1,9 @@
 import {Header} from './Header'; 
-import {Calculator} from './Calculator';
+import {CommonSolvencyCalculator} from './CommonSolvencyCalculator';
 import {SolvenciesTable} from './SolvenciesTable';
+import {ObligationsSolvencyCalculator} from './ObligationsSolvencyCalculator';
+import {AbsoluteLiquidityCalculator} from './AbsoluteLiquidityCalculator';
+import {CurrentLiquidityCalculator} from './CurrentLiquidityCalculator';
+import {AssetsCoverageCalculator} from './AssetsCoverageCalculator';
 
-export {Header, Calculator, SolvenciesTable};
+export {AssetsCoverageCalculator, CurrentLiquidityCalculator, AbsoluteLiquidityCalculator, ObligationsSolvencyCalculator, Header, CommonSolvencyCalculator, SolvenciesTable};

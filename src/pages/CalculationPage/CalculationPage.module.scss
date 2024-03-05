@@ -1,0 +1,77 @@
+@import "styles/_colors";
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.pageWrapper {
+    width: 1020px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.indicatorDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.heading {
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+}
+
+.highlightedText {
+    font-weight: 600;
+    color: $wildBlueYander !important;
+    text-decoration: none;
+}
+
+.definitionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.primaryText {
+    font-size: 20px !important;
+    margin-bottom: 0;
+}
+
+.formulaContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.formulaDescription {
+    display: flex;
+    flex-direction: column;
+    // gap: 8px;
+}
+
+.formulaImage {
+    width: 250px;
+    height: auto;
+}
+
+.currentSolvencyFormulaImage {
+    width: 700px;
+    height: auto;
+}
+
+.formulaSectionWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import styles from './Calculator.module.scss';
+import styles from './CommonSolvencyCalculator.module.scss';
 import { useAppDispatch } from 'hooks';
 import { SolvencyEffects } from 'store';
 
-const Calculator: FC = () => {
-    const [startFunds, setStartFunds] = useState<number>();
+const CommonSolvencyCalculator: FC = () => {
+    const [startFunds, setStartFunds] = useState<number>(0);
     const [endFunds, setEndFunds] = useState<number>(0);
     const [spentFunds, setSpentFunds] = useState<number>(0);
     const [calculationResult, setCalculationResult] = useState(0);
@@ -14,8 +14,8 @@ const Calculator: FC = () => {
 
     const dispatch = useAppDispatch();
 
-    const getCaclculationDescription = () => {
-        if (calculationResult > 1.0) {
+    const getCaclculationDescription = (result: number) => {
+        if (result > 1.0) {
             setDescription('Предприятие является платёжеспособным')
         } else {
             setDescription('Предприятие не является платёжеспособным')
@@ -30,9 +30,9 @@ const Calculator: FC = () => {
         const result = Math.round((startFunds + endFunds) / spentFunds * 100) / 100.0;
 
         setCalculationResult(result);
-        getCaclculationDescription();
+        getCaclculationDescription(result);
 
-        await dispatch(SolvencyEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult, description}));
+        await dispatch(SolvencyEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description}));
     };
 
     useEffect(() => {
@@ -46,9 +46,9 @@ const Calculator: FC = () => {
     return (
         <Box>
             <Box className={styles.container}>
-                <TextField type='number' onChange={(event) => setStartFunds(Number(event.target.value))} value={startFunds} label='Денежные средства на начало года (руб.)' />
-                <TextField type='number' onChange={(event) => setEndFunds(Number(event.target.value))} value={endFunds} label='Денежные средства поступившие за год (руб.)' />
-                <TextField type='number' onChange={(event) => setSpentFunds(Number(event.target.value))} value={spentFunds} label='Денежные средства израсходованные за год (руб.)' />
+                <TextField onChange={(event) => setStartFunds(Number(event.target.value))} value={startFunds} label='Денежные средства на начало года (руб.)' />
+                <TextField onChange={(event) => setEndFunds(Number(event.target.value))} value={endFunds} label='Денежные средства поступившие за год (руб.)' />
+                <TextField onChange={(event) => setSpentFunds(Number(event.target.value))} value={spentFunds} label='Денежные средства израсходованные за год (руб.)' />
                 <Button disabled={isSubmitDisabled} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
             </Box>
             <Box>
@@ -62,4 +62,4 @@ const Calculator: FC = () => {
     );
 };
 
-export default Calculator;
+export default CommonSolvencyCalculator;

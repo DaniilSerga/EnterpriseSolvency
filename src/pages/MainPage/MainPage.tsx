@@ -2,9 +2,6 @@ import React, {FC} from 'react';
 import { Box, Typography } from '@mui/material';
 import styles from './MainPage.module.scss';
 import headingImage from 'assets/image.png';
-import { Link } from 'react-router-dom';
-import {Calculator} from 'components';
-import formula from 'assets/formula.png';
 
 const MainPage: FC = () => {
     return (
@@ -47,26 +44,7 @@ const MainPage: FC = () => {
                     </Box>
                 </section>
 
-                <section>
-                    <Typography variant='h1' className={styles.heading}>Калькулятор <span className={styles.highlightedText}>платёжеспособности</span></Typography>
-                    <Box className={styles.definitionContainer}>
-                        <Typography paragraph className={styles.primaryText}>Мы предлагаем вам рассчитать платёжеспособность вашего предприятия. Для этого необходимо перейти по ссылке, нажав на кнопку ниже и ввести входные данные. После расчёта, на экран будет выведен <span className={styles.highlightedText}>результат</span> расчёта, сформирован <span className={styles.highlightedText}>вывод</span> на основе полученного результата, а сама операция будет записана в таблицу на странице <Link to="reports" className={styles.highlightedText}>"Отчётность"</Link> </Typography>
-                    </Box>
-                </section>
-
-                <section>
-                    <Box className={styles.formulaSectionWrapper}>
-                        <Box className={styles.formulaContainer}>
-                            <img className={styles.formulaImage} src={formula} alt="formula" />
-                            <Box className={styles.formulaDescription}>
-                                <Typography className={styles.primaryText} paragraph><span className={styles.highlightedText}>ДСнг</span> - денежные средства на начало года</Typography>
-                                <Typography className={styles.primaryText} paragraph><span className={styles.highlightedText}>ДСпг</span> - денежные средства поступившие за год</Typography>
-                                <Typography className={styles.primaryText} paragraph><span className={styles.highlightedText}>ДСиг</span> - денежные средства израсходованные за год</Typography>
-                            </Box>
-                        </Box>
-                        <Calculator />
-                    </Box>
-                </section>
+                
             </Box>
         </Box>
     );
