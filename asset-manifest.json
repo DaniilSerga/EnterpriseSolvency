@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/EnterpriseSolvency/static/css/main.d517352d.css",
+    "main.js": "/EnterpriseSolvency/static/js/main.b1420a4e.js",
+    "static/js/453.b48a0b12.chunk.js": "/EnterpriseSolvency/static/js/453.b48a0b12.chunk.js",
+    "static/media/image.png": "/EnterpriseSolvency/static/media/image.1545373b0642b2e14c24.png",
+    "static/media/solvencyCurrent.png": "/EnterpriseSolvency/static/media/solvencyCurrent.465f3ad7f08d076c6a8c.png",
+    "static/media/currentLiquidity.png": "/EnterpriseSolvency/static/media/currentLiquidity.bd1505c125c6c037da09.png",
+    "static/media/absoluteLiquidity.png": "/EnterpriseSolvency/static/media/absoluteLiquidity.c410c946dab5db8da0d6.png",
+    "static/media/assetsCoverage.png": "/EnterpriseSolvency/static/media/assetsCoverage.60d822e12436651bd62c.png",
+    "static/media/logo.svg": "/EnterpriseSolvency/static/media/logo.03ac1a6cf2118a2cf6fef890ec46a02e.svg",
+    "static/media/formula.png": "/EnterpriseSolvency/static/media/formula.c35281c3cef53ddb693f.png",
+    "index.html": "/EnterpriseSolvency/index.html",
+    "main.d517352d.css.map": "/EnterpriseSolvency/static/css/main.d517352d.css.map",
+    "main.b1420a4e.js.map": "/EnterpriseSolvency/static/js/main.b1420a4e.js.map",
+    "453.b48a0b12.chunk.js.map": "/EnterpriseSolvency/static/js/453.b48a0b12.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d517352d.css",
+    "static/js/main.b1420a4e.js"
+  ]
+}
