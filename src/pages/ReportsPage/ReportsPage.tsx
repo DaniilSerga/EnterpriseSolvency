@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import styles from './ReportsPage.module.scss';
 import { AbsoluteLiquidityTable, AssetsCoverageTable, ChooseExistingCompanyInput, CurrentLiquidityTable, ObligationsSolvencyTable } from 'components';
@@ -15,12 +15,16 @@ const ReportsPage: FC = () => {
         setChosenCompany(company);
     };
 
+    useEffect(() => {
+        setChosenCompany(null);
+    }, []);
+    
     return (
         <div className={styles.container}>
             <div className={styles.contentWrapper}>
                 <Typography variant='h1' className={styles.heading}><span className={styles.highlightedText}>История</span> расчётов</Typography>
                 <ChooseExistingCompanyInput setChosenCompany={setCurrentCompany} isCompanySet={!!chosenCompany} />
-                {detailedCompany && (
+                {chosenCompany !== null && detailedCompany && (
                   <>
                     <CommonSolvencyTable data={detailedCompany.commonSolvencyResults!} />
                     <ObligationsSolvencyTable data={detailedCompany.obligationsSolvencyResults!} />

@@ -19,9 +19,9 @@ const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
 
     const getCaclculationDescription = (result: number) => {
         if (result > 1.0) {
-            setDescription('Предприятие является платёжеспособным')
+            return 'Предприятие является платёжеспособным';
         } else {
-            setDescription('Предприятие не является платёжеспособным')
+            return 'Предприятие не является платёжеспособным';
         }
     };
 
@@ -31,11 +31,12 @@ const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
         }
 
         const result = Math.round((startFunds + endFunds) / spentFunds * 100) / 100.0;
+        const calculatedDescription = getCaclculationDescription(result);
 
         setCalculationResult(result);
-        getCaclculationDescription(result);
+        setDescription(calculatedDescription);
 
-        await dispatch(CoefficientsEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description, companyId}));
+        await dispatch(CoefficientsEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description: calculatedDescription, companyId}));
     };
 
     return (

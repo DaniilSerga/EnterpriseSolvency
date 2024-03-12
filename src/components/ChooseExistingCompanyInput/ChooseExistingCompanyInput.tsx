@@ -16,6 +16,7 @@ const ChooseExistingCompanyInput: FC<ChooseCompanyInputProps> = ({isCompanySet, 
     const dispatch = useAppDispatch();
     const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
     const companies = useAppSelector(state => state.companiesReducer.companies);
+    const [companiesList, setCompaniesList] = useState<Company[]>(companies);
     const detailedCompany = useAppSelector(state => state.companiesReducer.detailedCompany);
 
     const fetchCompanies = async () => {
@@ -34,23 +35,25 @@ const ChooseExistingCompanyInput: FC<ChooseCompanyInputProps> = ({isCompanySet, 
     const deleteCompany = async () => {
         const chosenCompany = companies.find(company => company.name === selectedCompany)!;
         await dispatch(CompaniesEffects.deleteCompany(chosenCompany.id));
+        await dispatch(CompaniesEffects.getCompanies());
         setChosenCompany(null);
         setSelectedCompany(null);
-        reset();
+        setCompaniesList([]);
     };
 
     useEffect(() => {
         setChosenCompany(detailedCompany);
     }, [detailedCompany]);
-
+    
     useEffect(() => {
-        fetchCompanies();    
-    }, []);
+        setCompaniesList(companies);
+    }, [companies]);
 
     return (
         <Box className={styles.companyChooseContainer}>
             <Box className={styles.inputContainer}>
-                <Autocomplete 
+                <Autocomplete
+                    onOpen={fetchCompanies}
                     value={selectedCompany} 
                     onInputChange={(_, value) => {
                         setSelectedCompany(value!);
@@ -59,7 +62,7 @@ const ChooseExistingCompanyInput: FC<ChooseCompanyInputProps> = ({isCompanySet, 
                     selectOnFocus
                     onChange={(_, value) => checkCompany(value)}
                     noOptionsText="Ничего не найдено - создайте новую компанию"
-                    options={companies.map(company => company.name)}
+                    options={companiesList.map(company => company.name)}
                     renderInput={(params) => 
                         <TextField {...params} placeholder='Выберите компанию или введите название собственной' label='Компания' />
                     } />
