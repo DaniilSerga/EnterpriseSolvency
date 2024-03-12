@@ -1,23 +1,24 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, {FC} from 'react';
-import { AbsoluteLiquidity, AssetsCoverage } from 'types/Solvency';
+import { ObligationsSolvency } from 'types/Solvency';
+
 import styles from '../tablesStyles.module.scss';
 
 interface Props {
-    data: AbsoluteLiquidity[];
+    data: ObligationsSolvency[];
 };
 
-const AbsoluteLiquidityTable: FC<Props> = ({data}) => {
+const ObligationsSolvencyTable: FC<Props> = ({data}) => {
     return (
         <Box className={styles.tableContainer}>
-            <Typography className={styles.heading}>Абсолютная ликвидность</Typography>
+            <Typography className={styles.heading}>Платёжеспособность по обязательствам</Typography>
             <TableContainer className={styles.table} component={Paper}>
                   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead>
                       <TableRow>
                         <TableCell>Дата</TableCell>
-                        <TableCell align="right">Активы</TableCell>
                         <TableCell align="right">Обязательства</TableCell>
+                        <TableCell align="right">Средняя месячная выручка</TableCell>
                         <TableCell align="right">Результат</TableCell>
                         <TableCell align="right">Описание</TableCell>
                       </TableRow>
@@ -32,7 +33,7 @@ const AbsoluteLiquidityTable: FC<Props> = ({data}) => {
                             {row.date}
                           </TableCell>
                           <TableCell align="right">{row.obligations}</TableCell>
-                          <TableCell align="right">{row.shortTermLiabilities}</TableCell>
+                          <TableCell align="right">{row.averageMonthlyRevenue}</TableCell>
                           <TableCell align="right">{row.calculationResult}</TableCell>
                           <TableCell align="right">{row.description}</TableCell>
                         </TableRow>
@@ -44,4 +45,4 @@ const AbsoluteLiquidityTable: FC<Props> = ({data}) => {
     );
 };
 
-export default AbsoluteLiquidityTable;
+export default ObligationsSolvencyTable;

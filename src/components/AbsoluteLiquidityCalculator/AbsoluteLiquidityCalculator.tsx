@@ -13,7 +13,6 @@ const AbsoluteLiquidityCalculator: FC<Props> = ({companyId}) => {
     const [description, setDescription] = useState('');
     const [obligations, setObligations] = useState(0);
     const [shortTermLiabilities, setShortTermLiabilities] = useState(0);
-    const [isSubmitDisabled, setSubmitDisabled] = useState(true);
     const [calculationResult, setCalculationResult] = useState(0);
     const dispatch = useAppDispatch();
 
@@ -31,20 +30,15 @@ const AbsoluteLiquidityCalculator: FC<Props> = ({companyId}) => {
         await dispatch(CoefficientsEffects.createAbsoluteLiquidity({obligations, shortTermLiabilities, calculationResult: result, description: calculatedDescription, companyId}))
     };
 
-    useEffect(() => {
-        setSubmitDisabled(shortTermLiabilities <= 0);
-    }, [shortTermLiabilities]);
-
     return (
         <Box>
             <Box className={styles.container}>
                 <TextField required onChange={(event) => setObligations(Number(event.target.value))} value={obligations} label='Деньги (руб.)' />
                 <TextField required onChange={(event) => setShortTermLiabilities(Number(event.target.value))} value={shortTermLiabilities} label='Краткосрочные обязательства (руб.)' />
-                <Button disabled={isSubmitDisabled} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
+                <Button disabled={shortTermLiabilities <= 0} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
             </Box>
             <Box>
                 <Typography className={styles.resultText} variant='h2'>{calculationResult}%</Typography>
-                {/* <Typography className={styles.resultDescription} variant='h2'>{description}</Typography> */}
                 {description && (
                     <Typography className={styles.resultDescription} variant='h2'>{description}</Typography>
                 )}

@@ -1,23 +1,24 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, {FC} from 'react';
-import { ObligationsSolvency } from 'types/Solvency';
+import { CurrentLiquidity } from 'types/Solvency';
+
 import styles from '../tablesStyles.module.scss';
 
 interface Props {
-    data: ObligationsSolvency[];
+    data: CurrentLiquidity[];
 };
 
-const ObligationsSolvencyTable: FC<Props> = ({data}) => {
+const CurrentLiquidityTable: FC<Props> = ({data}) => {
     return (
         <Box className={styles.tableContainer}>
-            <Typography className={styles.heading}>Платёжеспособность по обязательствам</Typography>
+            <Typography className={styles.heading}>Текущая ликвидность</Typography>
             <TableContainer className={styles.table} component={Paper}>
                   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead>
                       <TableRow>
                         <TableCell>Дата</TableCell>
+                        <TableCell align="right">Активы</TableCell>
                         <TableCell align="right">Обязательства</TableCell>
-                        <TableCell align="right">Средняя месячная выручка</TableCell>
                         <TableCell align="right">Результат</TableCell>
                         <TableCell align="right">Описание</TableCell>
                       </TableRow>
@@ -31,8 +32,8 @@ const ObligationsSolvencyTable: FC<Props> = ({data}) => {
                           <TableCell component="th" scope="row">
                             {row.date}
                           </TableCell>
-                          <TableCell align="right">{row.obligations}</TableCell>
-                          <TableCell align="right">{row.averageMonthlyRevenue}</TableCell>
+                          <TableCell align="right">{row.currentAssets}</TableCell>
+                          <TableCell align="right">{row.shortTermLiabilities}</TableCell>
                           <TableCell align="right">{row.calculationResult}</TableCell>
                           <TableCell align="right">{row.description}</TableCell>
                         </TableRow>
@@ -44,4 +45,4 @@ const ObligationsSolvencyTable: FC<Props> = ({data}) => {
     );
 };
 
-export default ObligationsSolvencyTable;
+export default CurrentLiquidityTable;

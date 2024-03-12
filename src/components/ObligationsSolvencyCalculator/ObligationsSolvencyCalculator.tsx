@@ -43,7 +43,6 @@ const ObligationsSolvencyCalculator: FC<Props> = ({companyId}) => {
             </Box>
             <Box>
                 <Typography className={styles.resultText} variant='h2'>{calculationResult}</Typography>
-                {/* <Typography className={styles.resultDescription} variant='h2'>{description}</Typography> */}
                 {description && (
                     <Typography className={styles.resultDescription} variant='h2'>{description}</Typography>
                 )}

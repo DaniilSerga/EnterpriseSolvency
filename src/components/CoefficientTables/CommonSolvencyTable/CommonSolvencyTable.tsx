@@ -1,23 +1,25 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, {FC} from 'react';
-import { AssetsCoverage } from 'types/Solvency';
+import { CommonSolvency } from 'types';
+
 import styles from '../tablesStyles.module.scss';
 
 interface Props {
-    data: AssetsCoverage[];
-};
+    data: CommonSolvency[];
+}
 
-const AssetsCoverageTable: FC<Props> = ({data}) => {
+const CommonSolvencyTable: FC<Props> = ({data}) => {
     return (
         <Box className={styles.tableContainer}>
-            <Typography className={styles.heading}>Покрытие активов</Typography>
+            <Typography className={styles.heading}>Платёжеспособность</Typography>
             <TableContainer className={styles.table} component={Paper}>
                   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead>
                       <TableRow>
                         <TableCell>Дата</TableCell>
-                        <TableCell align="right">Активы</TableCell>
-                        <TableCell align="right">Обязательства</TableCell>
+                        <TableCell align="right">Деньги на начало года</TableCell>
+                        <TableCell align="right">Деньги на конец года</TableCell>
+                        <TableCell align="right">Деньги израсходованные за год</TableCell>
                         <TableCell align="right">Результат</TableCell>
                         <TableCell align="right">Описание</TableCell>
                       </TableRow>
@@ -31,10 +33,11 @@ const AssetsCoverageTable: FC<Props> = ({data}) => {
                           <TableCell component="th" scope="row">
                             {row.date}
                           </TableCell>
-                          <TableCell align="right">{row.assets}</TableCell>
-                          <TableCell align="right">{row.obligations}</TableCell>
+                          <TableCell align="right">{row.startFunds}</TableCell>
+                          <TableCell align="right">{row.endFunds}</TableCell>
+                          <TableCell align="right">{row.spentFunds}</TableCell>
                           <TableCell align="right">{row.calculationResult}</TableCell>
-                          <TableCell align="center">-</TableCell>
+                          <TableCell align="right">{row.description}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -44,4 +47,4 @@ const AssetsCoverageTable: FC<Props> = ({data}) => {
     );
 };
 
-export default AssetsCoverageTable;
+export default CommonSolvencyTable;

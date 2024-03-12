@@ -14,7 +14,6 @@ const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
     const [spentFunds, setSpentFunds] = useState<number>(0);
     const [calculationResult, setCalculationResult] = useState(0);
     const [description, setDescription] = useState<string>('Предприятие является платёжеспособным');
-    const [isSubmitDisabled, setSubmitDisabled] = useState(false);
 
     const dispatch = useAppDispatch();
 
@@ -39,25 +38,16 @@ const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
         await dispatch(CoefficientsEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description, companyId}));
     };
 
-    useEffect(() => {
-        if (spentFunds === 0) {
-            setSubmitDisabled(true);
-        } else {
-            setSubmitDisabled(false);
-        }
-    }, [spentFunds]);
-
     return (
         <Box>
             <Box className={styles.container}>
                 <TextField onChange={(event) => setStartFunds(Number(event.target.value))} value={startFunds} label='Денежные средства на начало года (руб.)' />
                 <TextField onChange={(event) => setEndFunds(Number(event.target.value))} value={endFunds} label='Денежные средства поступившие за год (руб.)' />
                 <TextField onChange={(event) => setSpentFunds(Number(event.target.value))} value={spentFunds} label='Денежные средства израсходованные за год (руб.)' />
-                <Button disabled={isSubmitDisabled} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
+                <Button disabled={spentFunds <= 0} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
             </Box>
             <Box>
                 <Typography className={styles.resultText} variant='h2'>{calculationResult}</Typography>
-                {/* <Typography className={styles.resultDescription} variant='h2'>{description}</Typography> */}
                 {description && (
                     <Typography className={styles.resultDescription} variant='h2'>{description}</Typography>
                 )}

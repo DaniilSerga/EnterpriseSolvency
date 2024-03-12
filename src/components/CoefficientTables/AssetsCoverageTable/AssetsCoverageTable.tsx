@@ -1,23 +1,24 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, {FC} from 'react';
-import styles from './SolvenciesTable.module.scss';
+import { AssetsCoverage } from 'types/Solvency';
+
+import styles from '../tablesStyles.module.scss';
 
 interface Props {
-    heading: string;
-    type: 'absoluteLiquitidy' | 'asstesCoverage' | 'commonSolvency' | 'currentLiquidity' | 'obligationsSolvency';
-    data: any;
-}
+    data: AssetsCoverage[];
+};
 
-const CoefficientTable: FC<Props> = ({type, data, heading}) => {
+const AssetsCoverageTable: FC<Props> = ({data}) => {
     return (
         <Box className={styles.tableContainer}>
-            <Typography className={styles.heading}>{heading}</Typography>
+            <Typography className={styles.heading}>Покрытие активов</Typography>
             <TableContainer className={styles.table} component={Paper}>
                   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead>
                       <TableRow>
                         <TableCell>Дата</TableCell>
-                        <TableCell align="right">Коэффициент</TableCell>
+                        <TableCell align="right">Активы</TableCell>
+                        <TableCell align="right">Обязательства</TableCell>
                         <TableCell align="right">Результат</TableCell>
                         <TableCell align="right">Описание</TableCell>
                       </TableRow>
@@ -25,15 +26,16 @@ const CoefficientTable: FC<Props> = ({type, data, heading}) => {
                     <TableBody>
                       {data.map((row) => (
                         <TableRow
-                          key={row.name}
+                          key={row.id}
                           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                           <TableCell component="th" scope="row">
                             {row.date}
                           </TableCell>
-                          <TableCell align="right">{row.name}</TableCell>
-                          <TableCell align="right">{row.result}</TableCell>
-                          <TableCell align="right">{row.description}</TableCell>
+                          <TableCell align="right">{row.assets}</TableCell>
+                          <TableCell align="right">{row.obligations}</TableCell>
+                          <TableCell align="right">{row.calculationResult}</TableCell>
+                          <TableCell align="center">-</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -43,4 +45,4 @@ const CoefficientTable: FC<Props> = ({type, data, heading}) => {
     );
 };
 
-export default CoefficientTable;
+export default AssetsCoverageTable;
