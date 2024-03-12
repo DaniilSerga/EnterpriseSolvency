@@ -13,12 +13,21 @@ const AssetsCoverageCalculator: FC<Props> = ({companyId}) => {
     const [assets, setAssets] = useState(0);
     const [obligations, setObligations] = useState(0);
     const [calculationResult, setCalculationResult] = useState(0);
+    const [description, setDescription] = useState('');
     const dispatch = useAppDispatch();
 
+    const getDescription = (result: number) => {
+        return `${result}% обязательств можно погасить за счёт имеющихся денежных средств и продажи материальных активов`;
+    };
+
     const calculateResult = async () => {
-        const result = assets / obligations;
+        const result = Math.round((assets / obligations) * 100);
+        const calculatedDescription = getDescription(result);
+
         setCalculationResult(result);
-        await dispatch(CoefficientsEffects.createAssetsCoverage({assets, obligations, calculationResult: result, description: '', companyId}));
+        setDescription(calculatedDescription);
+
+        await dispatch(CoefficientsEffects.createAssetsCoverage({assets, obligations, calculationResult: result, description: calculatedDescription, companyId}));
     };
 
     return (
@@ -29,7 +38,10 @@ const AssetsCoverageCalculator: FC<Props> = ({companyId}) => {
                 <Button disabled={obligations <= 0} className={styles.submitButton} onClick={calculateResult}>Рассчитать</Button>
             </Box>
             <Box>
-                <Typography className={styles.resultText} variant='h2'>{calculationResult}</Typography>
+                <Typography className={styles.resultText} variant='h2'>{calculationResult}%</Typography>
+                {description && (
+                    <Typography className={styles.resultDescription} variant='h2'>{description}</Typography>
+                )}
             </Box>
         </Box>
     );

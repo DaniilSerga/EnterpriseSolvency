@@ -28,7 +28,11 @@ const initialState: ICompaniesState = {
 const companiesSlice = createSlice({
     name: 'companiesSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        reset: () => {
+            return initialState;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getCompanies.fulfilled, (state, action) => {
             state.companies = action.payload;
@@ -48,5 +52,5 @@ export const CompaniesEffects = {
     deleteCompany,
 };
 
-export const {} = actions;
+export const {reset} = actions;
 export default reducer;

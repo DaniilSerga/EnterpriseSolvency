@@ -1,10 +1,11 @@
-import { Autocomplete, Box, Button, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material';
 import React, {FC, useEffect, useState} from 'react';
-
+import CloseIcon from '@mui/icons-material/Close';
 import styles from './ChooseExistingCompanyInput.module.scss';
 import { CompaniesEffects } from 'store';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { Company } from 'types';
+import { reset } from 'store/slices/CompaniesSlice';
 
 interface ChooseCompanyInputProps {
     isCompanySet: boolean;
@@ -21,11 +22,22 @@ const ChooseExistingCompanyInput: FC<ChooseCompanyInputProps> = ({isCompanySet, 
         await dispatch(CompaniesEffects.getCompanies());
     };  
 
-    const checkCompany = async () => {
-        const chosenCompany = companies.find(company => company.name === selectedCompany)!;
+    const checkCompany = async (value: string | null) => {
+        if (!value) {
+            return;
+        }
+
+        const chosenCompany = companies.find(company => company.name === value)!;
         await dispatch(CompaniesEffects.getCompany(chosenCompany.id));
-        // setChosenCompany(detailedCompany);
-    }
+    };
+
+    const deleteCompany = async () => {
+        const chosenCompany = companies.find(company => company.name === selectedCompany)!;
+        await dispatch(CompaniesEffects.deleteCompany(chosenCompany.id));
+        setChosenCompany(null);
+        setSelectedCompany(null);
+        reset();
+    };
 
     useEffect(() => {
         setChosenCompany(detailedCompany);
@@ -37,16 +49,26 @@ const ChooseExistingCompanyInput: FC<ChooseCompanyInputProps> = ({isCompanySet, 
 
     return (
         <Box className={styles.companyChooseContainer}>
-            <Autocomplete 
-                value={selectedCompany} 
-                onInputChange={(_, value) => {
-                    setSelectedCompany(value!);
-                    isCompanySet && setChosenCompany(null); 
-                }} 
-                noOptionsText="Ничего не найдено - создайте новую компанию"
-                options={companies.map(company => company.name)}
-                renderInput={(params) => <TextField {...params} placeholder='Выберите компанию или введите название собственной' label='Компания' />} />
-            <Button variant='contained' className={styles.submitButton} onClick={checkCompany}>Подтвердить</Button>
+            <Box className={styles.inputContainer}>
+                <Autocomplete 
+                    value={selectedCompany} 
+                    onInputChange={(_, value) => {
+                        setSelectedCompany(value!);
+                        isCompanySet && setChosenCompany(null); 
+                    }}
+                    selectOnFocus
+                    onChange={(_, value) => checkCompany(value)}
+                    noOptionsText="Ничего не найдено - создайте новую компанию"
+                    options={companies.map(company => company.name)}
+                    renderInput={(params) => 
+                        <TextField {...params} placeholder='Выберите компанию или введите название собственной' label='Компания' />
+                    } />
+                <Button size='medium' variant='outlined' onClick={deleteCompany} disabled={!isCompanySet}>
+                    <Typography>Удалить</Typography>
+                    <CloseIcon />
+                </Button>
+            </Box>
+            {/* <Button variant='contained' className={styles.submitButton} onClick={checkCompany}>Подтвердить</Button> */}
         </Box>
     );
 };

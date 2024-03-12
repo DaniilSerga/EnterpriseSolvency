@@ -2,7 +2,6 @@ import axios from "axios";
 import { Company } from "types";
 
 export const fetchCompany = async (id: number) => {
-    console.log(id);
     const company = await axios.get<Company>(`https://kursachsergi.azurewebsites.net/api/Companies/${id}`).then(resp => resp.data);
     return company;
 };

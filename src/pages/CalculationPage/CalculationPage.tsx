@@ -20,6 +20,10 @@ const CalculationPage: FC = () => {
         setChosenCompany(company);
     };
 
+    useEffect(() => {
+        console.log(chosenCompany);
+    }, [chosenCompany]);
+    
     return (
         <div className={styles.pageContainer}>
             <Box className={styles.pageWrapper}>

@@ -13,7 +13,7 @@ const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
     const [endFunds, setEndFunds] = useState<number>(0);
     const [spentFunds, setSpentFunds] = useState<number>(0);
     const [calculationResult, setCalculationResult] = useState(0);
-    const [description, setDescription] = useState<string>('Предприятие является платёжеспособным');
+    const [description, setDescription] = useState('');
 
     const dispatch = useAppDispatch();
 

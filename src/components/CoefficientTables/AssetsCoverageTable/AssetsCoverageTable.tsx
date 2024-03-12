@@ -34,8 +34,8 @@ const AssetsCoverageTable: FC<Props> = ({data}) => {
                           </TableCell>
                           <TableCell align="right">{row.assets}</TableCell>
                           <TableCell align="right">{row.obligations}</TableCell>
-                          <TableCell align="right">{row.calculationResult}</TableCell>
-                          <TableCell align="center">-</TableCell>
+                          <TableCell align="right">{row.calculationResult}%</TableCell>
+                          <TableCell align="center">{row.description}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

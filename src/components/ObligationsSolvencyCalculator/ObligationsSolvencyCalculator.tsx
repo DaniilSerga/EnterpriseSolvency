@@ -25,7 +25,7 @@ const ObligationsSolvencyCalculator: FC<Props> = ({companyId}) => {
     };
 
     const calculateResult = async () => {
-        const result = obligations / averageMonthlyRevenue;
+        const result = Math.round((obligations / averageMonthlyRevenue) * 100) / 100;
         const calculatedDescription = getDescription(result);
 
         setCalculationResult(result);
