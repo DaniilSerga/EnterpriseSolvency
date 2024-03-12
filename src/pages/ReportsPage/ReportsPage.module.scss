@@ -12,6 +12,12 @@
     width: 1000px;
 }
 
+.primaryText {
+    margin-top: 20px;
+    font-size: 20px !important;
+    margin-bottom: 0;
+}
+
 .heading {
     font-size: 34px !important;
     font-weight: 600 !important;
@@ -21,7 +27,7 @@
 .highlightedText {
     font-weight: 600;
     color: $wildBlueYander !important;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .table {

@@ -6,6 +6,7 @@ import { Company } from 'types';
 import { Typography } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import {CommonSolvencyTable} from 'components';
+import { Link } from 'react-router-dom';
 
 const ReportsPage: FC = () => {
     const [chosenCompany, setChosenCompany] = useState<Company | null>(null);
@@ -26,11 +27,21 @@ const ReportsPage: FC = () => {
                 <ChooseExistingCompanyInput setChosenCompany={setCurrentCompany} isCompanySet={!!chosenCompany} />
                 {chosenCompany !== null && detailedCompany && (
                   <>
-                    <CommonSolvencyTable data={detailedCompany.commonSolvencyResults!} />
-                    <ObligationsSolvencyTable data={detailedCompany.obligationsSolvencyResults!} />
-                    <AbsoluteLiquidityTable data={detailedCompany.absoluteLiquidityResults!} />
-                    <CurrentLiquidityTable data={detailedCompany?.currentLiquidityResults!} />
-                    <AssetsCoverageTable data={detailedCompany.assetsCoverageResults!} />
+                    { detailedCompany.commonSolvencyResults!.length !== 0 && <CommonSolvencyTable data={detailedCompany.commonSolvencyResults!} /> }
+                    { detailedCompany.obligationsSolvencyResults!.length !== 0 && <ObligationsSolvencyTable data={detailedCompany.obligationsSolvencyResults!} /> }
+                    { detailedCompany.absoluteLiquidityResults!.length !== 0 && <AbsoluteLiquidityTable data={detailedCompany.absoluteLiquidityResults!} /> }
+                    { detailedCompany.currentLiquidityResults!.length !== 0 && <CurrentLiquidityTable data={detailedCompany?.currentLiquidityResults!} /> }
+                    { detailedCompany.assetsCoverageResults!.length !== 0 && <AssetsCoverageTable data={detailedCompany.assetsCoverageResults!} />}
+                    { detailedCompany.commonSolvencyResults!.length === 0 && 
+                      detailedCompany.obligationsSolvencyResults!.length === 0 &&
+                      detailedCompany.absoluteLiquidityResults!.length === 0 &&
+                      detailedCompany.currentLiquidityResults!.length === 0 && 
+                      detailedCompany.assetsCoverageResults!.length === 0 && (
+                        <>
+                            <Typography className={styles.primaryText}>Здесь пока ничего нет</Typography>
+                            <Typography>Выплоните любые действия на странице <Link to="/calculation" className={styles.highlightedText}>Расчёты</Link></Typography>
+                        </>
+                      )}
                   </>
                 )}
             </div>

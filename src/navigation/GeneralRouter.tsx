@@ -9,9 +9,9 @@ const GeneralRouter: FC = () => {
         <Box>
             <Header />
             <Routes>
-                <Route path="" element={<MainPage />} />
-                <Route path="calculation" element={<CalculationPage />} />
-                <Route path="reports" element={<ReportsPage />} />
+                <Route path="/" element={<MainPage />} />
+                <Route path="/calculation" element={<CalculationPage />} />
+                <Route path="/reports" element={<ReportsPage />} />
             </Routes>
         </Box>
     );

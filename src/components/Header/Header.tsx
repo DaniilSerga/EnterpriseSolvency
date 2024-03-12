@@ -11,9 +11,9 @@ const Header: FC = () => {
                 <img src={logo} alt="" />
             </Box>
             <Box className={styles.navbarWrapper}>
-                <Link className={styles.navbarItem} to={""}>Главная</Link>
-                <Link className={styles.navbarItem} to={"calculation"}>Расчёт</Link>
-                <Link className={styles.navbarItem} to={"reports"}>Отчёт</Link>
+                <Link className={styles.navbarItem} to={"/"}>Главная</Link>
+                <Link className={styles.navbarItem} to={"/calculation"}>Расчёт</Link>
+                <Link className={styles.navbarItem} to={"/reports"}>Отчёт</Link>
             </Box>
         </header>
     );
