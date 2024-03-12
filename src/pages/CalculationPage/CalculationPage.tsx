@@ -19,10 +19,6 @@ const CalculationPage: FC = () => {
     const setCurrentCompany = (company: Company | null) => {
         setChosenCompany(company);
     };
-
-    useEffect(() => {
-        console.log(chosenCompany);
-    }, [chosenCompany]);
     
     return (
         <div className={styles.pageContainer}>

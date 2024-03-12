@@ -40,7 +40,6 @@ const ChooseCompanyInput: FC<ChooseCompanyInputProps> = ({setChosenCompany, isCo
             return;
         }
 
-        console.log('CALL');
         const storedCompany = companies.find((company) => company.name === selectedCompany);
         setChosenCompany(storedCompany!);
         setIsLoading(false);
