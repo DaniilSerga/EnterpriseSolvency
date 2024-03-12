@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import solvencyReducer from './slices/SolvencySlice';
+import solvencyReducer from './slices/CoefficientsSlice';
+import companiesReducer from './slices/CompaniesSlice';
 
 export const store = configureStore({
-    reducer: solvencyReducer,
+    reducer: {
+        solvencyReducer,
+        companiesReducer
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,

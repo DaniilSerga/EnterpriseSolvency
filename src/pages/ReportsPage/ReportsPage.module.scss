@@ -1,3 +1,29 @@
+@import "styles/_colors";
+
 .container {
-    background-color: yellows;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.contentWrapper {
+    flex-direction: column;
+    justify-content: center;
+    width: 1000px;
+}
+
+.heading {
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+}
+
+.highlightedText {
+    font-weight: 600;
+    color: $wildBlueYander !important;
+    text-decoration: none;
+}
+
+.table {
+    margin-top: 20px;
 }

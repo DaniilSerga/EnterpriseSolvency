@@ -1,5 +1,10 @@
-import { Solvency } from "types";
+import { Company, CommonSolvency } from "types";
 
 export interface ISolvencyState {
-    SolvencyHistory: Solvency[];
+    SolvencyHistory: CommonSolvency[];
+}
+
+export interface ICompaniesState {
+    companies: Company[];
+    detailedCompany: Company | null;
 }

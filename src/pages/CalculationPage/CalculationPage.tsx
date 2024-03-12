@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
-import { AbsoluteLiquidityCalculator, AssetsCoverageCalculator, CommonSolvencyCalculator, CurrentLiquidityCalculator, ObligationsSolvencyCalculator } from 'components';
+import { AbsoluteLiquidityCalculator, AssetsCoverageCalculator, ChooseCompanyInput, CommonSolvencyCalculator, CurrentLiquidityCalculator, ObligationsSolvencyCalculator } from 'components';
 import { Link } from 'react-router-dom';
 import { ExpandMore } from '@mui/icons-material';
 import formula from 'assets/formula.png';
@@ -11,14 +11,21 @@ import currentLiquidityFomula from 'assets/currentLiquidity.png';
 import assetsCoverageFormula from 'assets/assetsCoverage.png';
 
 import styles from './CalculationPage.module.scss';
+import { Company } from 'types';
 
 const CalculationPage: FC = () => {
+    const [chosenCompany, setChosenCompany] = useState<Company | null>(null);
+    
+    const setCurrentCompany = (company: Company | null) => {
+        setChosenCompany(company);
+    };
+
     return (
         <div className={styles.pageContainer}>
             <Box className={styles.pageWrapper}>
+                <ChooseCompanyInput isCompanySet={!!chosenCompany} setChosenCompany={setCurrentCompany} />
                 <section>
                     <Typography variant='h1' className={styles.heading}><span className={styles.highlightedText}>Платёжеспособность</span></Typography>
-
                     <Box className={styles.indicatorDescription}>
                         <Typography className={styles.primaryText} paragraph>Способность компании полностью и вовремя оплачивать свои обязательства называют платёжеспособностью. Как правило, к ним относят кредиты, займы, оплату поставок, но можно говорить и про способность предприятия оплачивать любые текущие расходы без задержек или закрыть все долги с помощью имеющихся активов.</Typography>
                         <Typography className={styles.primaryText} paragraph>Высокая платёжеспособность показывает банкам, инвесторам и контрагентам, что компании можно доверять. Однако оценивать этот показатель нужно не только в их интересах, но и для себя, чтобы понять, как идут дела у вашего бизнеса.</Typography>
@@ -26,10 +33,8 @@ const CalculationPage: FC = () => {
                         <Typography className={styles.primaryText} paragraph>Основные источники информации о финансовом состоянии фирмы находятся в налоговом отчёте, бухгалтерском балансе, отчёте о финансовых результатах и в отчёте о движении денежных средств</Typography>
                         <Typography className={styles.primaryText} paragraph>Ниже вы можете рассчитать такие показатели платёжеспособности как <span className={styles.highlightedText}>коэффициент платёжеспособности</span> и <span className={styles.highlightedText}>коэффициент платёжеспособности по текущим обязательствам</span></Typography>
                     </Box>
-
-                    <Accordion>
+                    <Accordion disabled={!chosenCompany}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            {/* <Typography variant='h1' className={styles.heading}>Калькулятор <span className={styles.highlightedText}>платёжеспособности</span></Typography> */}
                             <Typography paragraph className={styles.primaryText}>Коэффициент платёжеспособности</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -46,12 +51,13 @@ const CalculationPage: FC = () => {
                                         <Typography className={styles.primaryText} paragraph><span className={styles.highlightedText}>ДСиг</span> - денежные средства израсходованные за год</Typography>
                                     </Box>
                                 </Box>
-                                <CommonSolvencyCalculator />
+                                {chosenCompany && (
+                                    <CommonSolvencyCalculator companyId={chosenCompany.id} />
+                                )}
                             </Box>
                         </AccordionDetails>
                     </Accordion>
-
-                    <Accordion>
+                    <Accordion disabled={!chosenCompany}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
                             <Typography paragraph className={styles.primaryText}>Коэффициент платёжеспособности по текущим обязательствам</Typography>
                         </AccordionSummary>
@@ -65,22 +71,21 @@ const CalculationPage: FC = () => {
                                 <Box className={styles.formulaContainer}>
                                     <img className={styles.currentSolvencyFormulaImage} src={currentSolvencyFormula} alt="formula" />
                                 </Box>
-                                <ObligationsSolvencyCalculator />
+                                { chosenCompany && (
+                                    <ObligationsSolvencyCalculator companyId={chosenCompany.id} />
+                                )}
                             </Box>
                         </AccordionDetails>
                     </Accordion>
                 </section>
-
                 <section>
                     <Typography variant='h1' className={styles.heading}><span className={styles.highlightedText}>Ликвидность</span></Typography>
-
                     <Box className={styles.indicatorDescription}>
                         <Typography className={styles.primaryText} paragraph>Коэффициенты платёжеспособности компании, как правило, не дают полную картину состояния бизнеса. Финансовый директор и бухгалтер смотрят ещё и на показатели ликвидности.</Typography>
                         <Typography className={styles.primaryText} paragraph>Ликвидность в этом случае ― показатель того, как быстро компания сможет продать свои активы, чтобы рассчитаться по долгам. Компания считается ликвидной, если активов (денег и имущества) у неё больше, чем пассивов (долгов).</Typography>
                         <Typography className={styles.primaryText} paragraph>Оценить ликвидность компании помогут три коэффициента: <span className={styles.highlightedText}>коэффициент абсолютной ликвидности</span>, <span className={styles.highlightedText}>коэффициент текущей ликвидности</span>, <span className={styles.highlightedText}>коэффициент покрытия активов</span></Typography>
                     </Box>
-
-                    <Accordion>
+                    <Accordion disabled={!chosenCompany}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
                             <Typography paragraph className={styles.primaryText}>Коэффициент абсолютной ликвидности</Typography>
                         </AccordionSummary>
@@ -94,12 +99,13 @@ const CalculationPage: FC = () => {
                                 <Box className={styles.formulaContainer}>
                                     <img className={styles.currentSolvencyFormulaImage} src={absoluteLiquidityFormula} alt="formula" />
                                 </Box>
-                                <AbsoluteLiquidityCalculator />
+                                {chosenCompany && (
+                                    <AbsoluteLiquidityCalculator companyId={chosenCompany.id} />
+                                )}
                             </Box>
                         </AccordionDetails>
                     </Accordion>
-
-                    <Accordion>
+                    <Accordion disabled={!chosenCompany}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
                             <Typography paragraph className={styles.primaryText}>Коэффициент текущей ликвидности</Typography>
                         </AccordionSummary>
@@ -114,12 +120,13 @@ const CalculationPage: FC = () => {
                                 <Box className={styles.formulaContainer}>
                                     <img className={styles.currentSolvencyFormulaImage} src={currentLiquidityFomula} alt="formula" />
                                 </Box>
-                                <CurrentLiquidityCalculator />
+                                {chosenCompany && (
+                                    <CurrentLiquidityCalculator companyId={chosenCompany.id} />
+                                )}
                             </Box>
                         </AccordionDetails>
                     </Accordion>
-
-                    <Accordion>
+                    <Accordion disabled={!chosenCompany}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
                             <Typography paragraph className={styles.primaryText}>Коэффициент покрытия активов</Typography>
                         </AccordionSummary>
@@ -133,7 +140,9 @@ const CalculationPage: FC = () => {
                                 <Box className={styles.formulaContainer}>
                                     <img className={styles.currentSolvencyFormulaImage} src={assetsCoverageFormula} alt="formula" />
                                 </Box>
-                                <AssetsCoverageCalculator />
+                                {chosenCompany && (
+                                    <AssetsCoverageCalculator companyId={chosenCompany.id} />
+                                )}
                             </Box>
                         </AccordionDetails>
                     </Accordion>

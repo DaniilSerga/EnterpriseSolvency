@@ -2,9 +2,13 @@ import React, {FC, useEffect, useState} from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import styles from './CommonSolvencyCalculator.module.scss';
 import { useAppDispatch } from 'hooks';
-import { SolvencyEffects } from 'store';
+import { CoefficientsEffects } from 'store';
 
-const CommonSolvencyCalculator: FC = () => {
+interface Props {
+    companyId: number;
+}
+
+const CommonSolvencyCalculator: FC<Props> = ({companyId}) => {
     const [startFunds, setStartFunds] = useState<number>(0);
     const [endFunds, setEndFunds] = useState<number>(0);
     const [spentFunds, setSpentFunds] = useState<number>(0);
@@ -32,7 +36,7 @@ const CommonSolvencyCalculator: FC = () => {
         setCalculationResult(result);
         getCaclculationDescription(result);
 
-        await dispatch(SolvencyEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description}));
+        await dispatch(CoefficientsEffects.createSolvency({startFunds, endFunds, spentFunds, calculationResult: result, description, companyId}));
     };
 
     useEffect(() => {

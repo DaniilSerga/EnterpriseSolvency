@@ -1,5 +1,5 @@
-import { Solvency } from "types";
+import { CommonSolvency } from "types";
 
 export interface IGetHistoryResponsetype {
-    items: Solvency[];
+    items: CommonSolvency[];
 }

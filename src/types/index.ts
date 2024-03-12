@@ -1,3 +1,4 @@
-import { Solvency } from "./Solvency";
+import { CommonSolvency } from "./Solvency";
+import { Company } from "./Company/Company";
 
-export type {Solvency};
+export type {Company, CommonSolvency};

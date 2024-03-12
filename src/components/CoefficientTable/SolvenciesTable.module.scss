@@ -3,6 +3,7 @@
 .tableContainer {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
 }
@@ -52,4 +53,21 @@
 .primaryText {
     font-size: 20px;
     margin-bottom: 0;
+}
+
+
+.heading {
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+}
+
+.highlightedText {
+    font-weight: 600;
+    color: $wildBlueYander !important;
+    text-decoration: none;
+}
+
+.table {
+    margin-top: 20px;
 }
