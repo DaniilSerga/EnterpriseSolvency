@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/EnterpriseSolvency/static/css/main.3cc6a016.css",
+    "main.css": "/EnterpriseSolvency/static/css/main.b7f8f851.css",
     "main.js": "/EnterpriseSolvency/static/js/main.35014e12.js",
     "static/js/453.b48a0b12.chunk.js": "/EnterpriseSolvency/static/js/453.b48a0b12.chunk.js",
     "static/media/image.png": "/EnterpriseSolvency/static/media/image.1545373b0642b2e14c24.png",
@@ -11,12 +11,12 @@
     "static/media/logo.svg": "/EnterpriseSolvency/static/media/logo.03ac1a6cf2118a2cf6fef890ec46a02e.svg",
     "static/media/formula.png": "/EnterpriseSolvency/static/media/formula.c35281c3cef53ddb693f.png",
     "index.html": "/EnterpriseSolvency/index.html",
-    "main.3cc6a016.css.map": "/EnterpriseSolvency/static/css/main.3cc6a016.css.map",
+    "main.b7f8f851.css.map": "/EnterpriseSolvency/static/css/main.b7f8f851.css.map",
     "main.35014e12.js.map": "/EnterpriseSolvency/static/js/main.35014e12.js.map",
     "453.b48a0b12.chunk.js.map": "/EnterpriseSolvency/static/js/453.b48a0b12.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3cc6a016.css",
+    "static/css/main.b7f8f851.css",
     "static/js/main.35014e12.js"
   ]
 }
