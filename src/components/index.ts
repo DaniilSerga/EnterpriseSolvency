@@ -12,8 +12,10 @@ import {CurrentLiquidityCalculator} from './CurrentLiquidityCalculator';
 import {AssetsCoverageCalculator} from './AssetsCoverageCalculator';
 import {ChooseCompanyInput} from './ChooseCompanyInput';
 import {ChooseExistingCompanyInput} from './ChooseExistingCompanyInput';
+import {Footer} from './Footer';
 
 export {
+    Footer,
     AbsoluteLiquidityTable, 
     AssetsCoverageTable, 
     CurrentLiquidityTable, 

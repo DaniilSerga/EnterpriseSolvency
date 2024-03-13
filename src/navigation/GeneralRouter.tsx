@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { CalculationPage, MainPage, ReportsPage } from 'pages';
 import { Box } from '@mui/material';
-import { Header } from 'components';
+import { Footer, Header } from 'components';
 
 const GeneralRouter: FC = () => {
     return (
@@ -13,6 +13,7 @@ const GeneralRouter: FC = () => {
                 <Route path="/calculation" element={<CalculationPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
             </Routes>
+            <Footer />
         </Box>
     );
 };
