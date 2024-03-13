@@ -9,7 +9,7 @@ const Footer: FC = () => {
         <footer className={styles.footerContainer}>
             <Typography className={styles.primaryText}>Серга Даниил</Typography>
             <Box>
-                <a href="https://github.com/DaniilSerga">
+                <a href="https://github.com/DaniilSerga/EnterpriseSolvency">
                     <GitHubIcon sx={{width: 28, height: 28}} />
                 </a>
                 <Typography className={styles.primaryText}>2024</Typography>

@@ -3,7 +3,7 @@ import React, {FC, useEffect, useState} from 'react';
 import styles from './ReportsPage.module.scss';
 import { AbsoluteLiquidityTable, AssetsCoverageTable, ChooseExistingCompanyInput, CurrentLiquidityTable, ObligationsSolvencyTable } from 'components';
 import { Company } from 'types';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import {CommonSolvencyTable} from 'components';
 import { Link } from 'react-router-dom';
@@ -37,10 +37,10 @@ const ReportsPage: FC = () => {
                       detailedCompany.absoluteLiquidityResults!.length === 0 &&
                       detailedCompany.currentLiquidityResults!.length === 0 && 
                       detailedCompany.assetsCoverageResults!.length === 0 && (
-                        <>
+                        <Box className={styles.nothingFoundContainer}>
                             <Typography className={styles.primaryText}>Здесь пока ничего нет</Typography>
                             <Typography>Выплоните любые действия на странице <Link to="/calculation" className={styles.highlightedText}>Расчёты</Link></Typography>
-                        </>
+                        </Box>
                       )}
                   </>
                 )}
